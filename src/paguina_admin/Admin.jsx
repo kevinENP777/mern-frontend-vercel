@@ -20,7 +20,7 @@ const Admin = () => {
       </h1>
 
       <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-        📋 Tareas del Administrador
+        📋 Emprendimientos por Analisar
       </h2>
 
       {tareasAdmin.length === 0 ? (
