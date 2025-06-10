@@ -13,7 +13,7 @@ const ConfirmarCuenta = () => {
 
     const { id } = params
 
-    useEffect(() =>{
+   /* useEffect(() =>{
     const confirmarCuenta = async () => {
         try {
             const url = `${import.meta.env.VITE_BACKEND_URL}/api/usuarios/confirmar/${id}`
@@ -33,7 +33,27 @@ const ConfirmarCuenta = () => {
           }          
     }
     confirmarCuenta()
-    }, [])
+    }, [])*/
+
+useEffect(() => {
+    const confirmarCuenta = async () => {
+        try {
+            const { data } = await clienteAxios(`/usuarios/confirmar/${id}`)
+            setAlerta({
+                msg: data.msg,
+                error: false
+            })
+            setCuentaConfirmada(true)
+        } catch (error) {
+            setAlerta({
+                msg: error.response.data.msg,
+                error: true
+            })
+        }          
+    }
+    confirmarCuenta()
+}, [])
+
     const { msg } = alerta
 
     return (
