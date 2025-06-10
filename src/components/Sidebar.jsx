@@ -7,7 +7,7 @@ const Sidebar = () => {
 
   return (
     <aside className='md:w-80 lg:w-96 px-6 py-10 bg-white shadow-md rounded-lg'>
-      <p className='text-xl font-bold text-[#006e3a] mb-6'>Bienbenido : {auth.nombre}</p>
+      <p className='text-xl font-bold text-[#006e3a] mb-6'>Bienvenido : {auth.nombre}</p>
 
       <Link
         to='crear-proyecto'
