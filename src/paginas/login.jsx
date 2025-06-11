@@ -61,8 +61,8 @@ const Login = () => {
     >
     
             <h1 className="text-green-600 font-black text-3xl capitalize text-center drop-shadow-lg">
-                 Iniciativa de apoyo a emprendimientos del Gobierno Nacional{' '}
-                <span className="text-black">  administrado por el SENA. </span>
+                 Iniciativa de Apoyo a Emprendimientos del Gobierno Nacional{' '}
+                <span className="text-black">  Administrado por el SENA. </span>
             </h1>
             
             {msg && <Alerta alerta={alerta} />}

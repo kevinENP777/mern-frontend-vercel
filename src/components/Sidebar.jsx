@@ -13,7 +13,7 @@ const Sidebar = () => {
         to='crear-proyecto'
         className='bg-[#006e3a] hover:bg-[#00562f] transition-colors duration-300 w-full p-4 text-white uppercase font-semibold block text-center rounded-xl shadow'
       >
-      Nueva idea de negocio
+      Nueva Idea de Negocio
       </Link>
     </aside>
   )
