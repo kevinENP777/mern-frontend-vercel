@@ -1,9 +1,15 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+
+  
+const Header = () => {
   const navigate = useNavigate();
 
 
-const Header = () => {
-  navigate('/'); // cerrar sesión y redirigir a la página de inicio
+ const handleLogout = () => {
+    navigate('/'); // Redirige al login
+  };
+
+  
   return (
     <header
       className='px-4 py-5 bg-white shadow-md border-b border-green-600'
