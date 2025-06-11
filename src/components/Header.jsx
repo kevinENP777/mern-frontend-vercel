@@ -39,7 +39,7 @@ const Header = () => {
 
        <button
             type='button'
-            onClick={() => window.location.href = '../paginas/login.jsx'}
+            onClick={() => window.location.href = '../paginas/login'}
             className='text-white text-sm bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md uppercase font-bold transition-colors shadow'
           >
             Cerrar Sesión
