@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
+  const navigate = useNavigate();
+
 
 const Header = () => {
+  navigate('/'); // cerrar sesión y redirigir a la página de inicio
   return (
     <header
       className='px-4 py-5 bg-white shadow-md border-b border-green-600'
@@ -37,9 +40,9 @@ const Header = () => {
         </Link>
 
 
-       <button
+         <button
             type='button'
-            onClick={() => window.location.href = '../paginas/login'}
+            onClick={handleLogout}
             className='text-white text-sm bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md uppercase font-bold transition-colors shadow'
           >
             Cerrar Sesión
