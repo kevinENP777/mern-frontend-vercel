@@ -105,11 +105,11 @@ const FormularioProyecto = () => {
               onChange={e => setCliente(e.target.value)}
           />
       </div>
-      <input
-              type='submit'
-              value={id ? 'Actualizar Proyecto' : 'Crear Proyecto'}
-              className='bg-sky-600 w-full p-3 uppercase font-bold text-white rounded cursor-pointer hover:bg-sky-700 transition-colors'
-          />  
+  <input
+        type='submit'
+        value={id ? 'Actualizar Proyecto' : 'Crear Emprendimiento'}
+        className='bg-green-600 w-full p-3 uppercase font-bold text-white rounded cursor-pointer hover:bg-green-700 transition-colors'
+      />
 
       
 
