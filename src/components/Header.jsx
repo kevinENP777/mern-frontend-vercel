@@ -37,12 +37,14 @@ const Header = () => {
         </Link>
 
 
-          <button
+       <button
             type='button'
+            onClick={() => window.location.href = '../paguinas/login.jsx'}
             className='text-white text-sm bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md uppercase font-bold transition-colors shadow'
           >
             Cerrar Sesión
           </button>
+
         </div>
       </div>
     </header>
