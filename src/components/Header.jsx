@@ -33,13 +33,13 @@ const Header = () => {
           to='/proyectos'
           className='text-sm text-black transition-colors uppercase font-semibold'
         >
-          financiar iniciativas empresariales | <span className='text-[#1C7B3E]'>SENA</span>
+          Financiar Iniciativas Empresariales | <span className='text-[#1C7B3E]'>SENA</span>
         </Link>
 
 
        <button
             type='button'
-            onClick={() => window.location.href = '../paguinas/login.jsx'}
+            onClick={() => window.location.href = '../paginas/login.jsx'}
             className='text-white text-sm bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md uppercase font-bold transition-colors shadow'
           >
             Cerrar Sesión

@@ -7,7 +7,7 @@ const Proyectos = () => {
   
   return (
     <>
-      <h1 className='text-4xl font-black text-green-600'>SENA Crea nuevos Emprendiminetos</h1>
+      <h1 className='text-4xl font-black text-green-600'>SENA Crea Nuevos Emprendimientos</h1>
 
       <div className='bg-white shadow mt-10 rounded-lg'>
         {proyectos.length ? 
@@ -17,7 +17,7 @@ const Proyectos = () => {
               proyecto={proyecto}
             />
           ))
-        : <p className='text-center text-green-600 uppercase p-5'>No hay ideas de negocio para mostrar</p>}
+        : <p className='text-center text-green-600 uppercase p-5'>No hay Ideas de Negocio para Mostrar</p>}
       </div>
     </>
 
