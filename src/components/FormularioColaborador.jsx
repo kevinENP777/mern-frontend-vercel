@@ -24,19 +24,19 @@ const FormularioColaborador = () => {
   const { msg } = alerta
 
   return (
-    <form 
+    <form
     className='bg-white py-10 px-5 md:w-1/2 rounded-lg shadow'
     onSubmit={handleSubmit}
   >
     {msg && <Alerta alerta={alerta}/>}
       <div className='mb-5'>
-        <label 
+        <label
           className='text-gray-700 uppefont-bold text-sm'
           htmlFor='email'
         >
         Email Colaborador
         </label>
-        <input 
+        <input
           type='email'
           id='email'
           placeholder='Email del colaborador'
@@ -45,8 +45,8 @@ const FormularioColaborador = () => {
           onChange={e => setEmail(e.target.value)}
           />
       </div>
-     <input 
-          type="submit" 
+     <input
+          type="submit"
           className='bg-[#1C7B3E] hover:bg-[#155f30] w-full p-3 text-white uppercase text-sm font-bold cursor-pointer transition-colors rounded'
           value='Buscar Patrocinador'
       />

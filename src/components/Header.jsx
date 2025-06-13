@@ -29,21 +29,21 @@ const Header = () => {
           Financiación de Emprendimientos | <span className='text-[#1C7B3E]'>SENA</span>
         </Link>
 
-        <input
+        {/* <input
           type='search'
           placeholder='Buscar Emprendimientos del SENA...'
           className='rounded-lg lg:w-96 p-1 border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 mt-4 md:mt-0'
-        />
+        /> */}
 
         <div className='flex items-center gap-3 mt-4 md:mt-0'>
 
 
-         <Link
+         {/* <Link
           to='/proyectos'
           className='text-sm text-black transition-colors uppercase font-semibold'
         >
           Financiar Iniciativas Empresariales | <span className='text-[#1C7B3E]'>SENA</span>
-        </Link>
+        </Link> */}
 
 
          <button
