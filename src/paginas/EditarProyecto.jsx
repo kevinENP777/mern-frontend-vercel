@@ -34,7 +34,7 @@ const EditarProyecto = () => {
                 </h1>
                 <div className='flex items-center gap-2'>
                     {/* Botón Editar */}
-                    <button className="bg-blue-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-colors">
+                    <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-colors">
                         EDITAR
                     </button>
 
