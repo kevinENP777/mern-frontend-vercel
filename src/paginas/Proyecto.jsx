@@ -87,7 +87,7 @@ const Proyecto = () => {
                     to={`/proyectos/nuevo-colaborador/${proyecto._id}`}
                     className='text-green-600 hover:text-black uppercase font-bold'
                 >
-                    Añadir
+                    {/* Añadir */}
                 </Link>
             </div>
 
