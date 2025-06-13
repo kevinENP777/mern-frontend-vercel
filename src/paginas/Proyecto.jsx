@@ -82,7 +82,7 @@ const Proyecto = () => {
             </div>
 
             <div className='flex items-center justify-between mt-10'> 
-                <p className='font-bold text-xl text-green-700'>Colaboradores</p>
+                <p className='font-bold text-xl text-green-700'></p>
                 <Link
                     to={`/proyectos/nuevo-colaborador/${proyecto._id}`}
                     className='text-green-600 hover:text-black uppercase font-bold'
