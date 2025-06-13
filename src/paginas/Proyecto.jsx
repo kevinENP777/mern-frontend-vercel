@@ -81,7 +81,7 @@ const Proyecto = () => {
                 )}
             </div>
 
-            {/* <div className='flex items-center justify-between mt-10'> 
+            <div className='flex items-center justify-between mt-10'> 
                 <p className='font-bold text-xl text-green-700'>Colaboradores</p>
                 <Link
                     to={`/proyectos/nuevo-colaborador/${proyecto._id}`}
@@ -89,7 +89,7 @@ const Proyecto = () => {
                 >
                     Añadir
                 </Link>
-            </div> */}
+            </div>
 
             <ModalFormularioTarea />
             <ModalEliminarTarea />

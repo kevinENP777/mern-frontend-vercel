@@ -312,7 +312,7 @@ const ProyectosProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`
                 }
             };
-            const { data } = await clienteAxios.post('/proyectos/colaboradores', { email }, config);
+            const { data } = await clienteAxios.post('/proyectos/', { email }, config);
             setColaborador(data)
             setAlerta({})
         } catch (error) {
@@ -335,7 +335,7 @@ const ProyectosProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`
                 }
             }
-            const { data } = await clienteAxios.post(`/proyectos/colaboradores/${proyecto._id}`, { email }, config)
+            const { data } = await clienteAxios.post(`/proyectos//${proyecto._id}`, { email }, config)
         } catch (error) {
             console.log(error.response)
         }
