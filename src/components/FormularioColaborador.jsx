@@ -45,14 +45,14 @@ const FormularioColaborador = () => {
           onChange={e => setEmail(e.target.value)}
           />
       </div>
-     <input
+     {/* <input
           type="submit"
           className='bg-[#1C7B3E] hover:bg-[#155f30] w-full p-3 text-white uppercase text-sm font-bold cursor-pointer transition-colors rounded'
           value='Buscar Patrocinador'
-      />
+      /> */}
 
     </form>
   )
 }
 
-export default FormularioColaborador
+// export default FormularioColaborador
