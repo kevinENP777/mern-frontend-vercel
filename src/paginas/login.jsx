@@ -15,10 +15,9 @@ const Login = () => {
 
     const correoAdmin = "admin@sena.edu.com"
 
-    
     const handleSubmit = async e => {
         e.preventDefault()
-    
+
         if ([email,password].includes('')) {
             setAlerta({
                 msg: 'Todos los campos son obligatorios',
@@ -31,14 +30,11 @@ const Login = () => {
             setAlerta({})
             localStorage.setItem('token', data.token) 
             setAuth(data)
-            // navigate('/proyectos')
             if (email === correoAdmin) {
-                navigate('/login-admin'); // Redirige al administrador
+                navigate('/login-admin')
             } else {
-                navigate('/proyectos');
+                navigate('/proyectos')
             }
-
-            //o:
         } catch (error) {
             setAlerta({
                 msg: error.response.data.msg,
@@ -48,78 +44,71 @@ const Login = () => {
     }
 
     const { msg } = alerta
-        // muestra en pantalla el mensaje de error
+
     return (
-        <div // de aqui en adelante es el fondo de la pagina
-        // y el formulario de inicio de sesion
-        // className="w-screen h-screen bg-cover bg-center flex flex-col justify-center items-center px-4"
-        // style={{ 
-        //     backgroundImage: `url(${image})`,
-        //     backgroundPosition: 'center',
-        //     backgroundRepeat: 'no-repeat', 
-        // }}
-    >
-    
+        <div>
             <h1 className="text-green-600 font-black text-3xl capitalize text-center drop-shadow-lg">
-                 Fondo Emprender{' '}
+                Fondo Emprender{' '}
                 <span className="text-black"> SENA. </span>
             </h1>
-            
-            {msg && <Alerta alerta={alerta} />}
-            
-            <form 
-                className="my-10 bg-white shadow rounded-lg p-10 w-full max-w-md"
-                onSubmit={handleSubmit}
-            >
-                <div className="my-5">  
-                    <label
-                        className='uppercase text-gray-600 block text-xl font-bold'
-                        htmlFor="email"
-                    >Email</label>
-                    <input
-                        id="email"
-                        type="email"
-                        placeholder="Email de Registro"
-                        className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                </div> 
-                
-                <div className="my-5">  
-                    <label
-                        className='uppercase text-gray-600 block text-xl font-bold'
-                        htmlFor="password"
-                    >password</label>
-                    <input
-                        id="password"
-                        type="password"
-                        placeholder="password de Registro"
-                        className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                    />
-                </div> 
 
-            <input
-                type="submit"
-                value="Iniciar Sesión"
-                className='bg-[#1C7B3E] mb-5 w-full py-3 text-white uppercase font-bold rounded
-                hover:cursor-pointer hover:bg-[#1C7B3E] transition-colors'
-            />
+            {/* CONTENEDOR PARA IGUALAR ANCHO */}
+            <div className="w-full max-w-md mx-auto">
+                {msg && <Alerta alerta={alerta} />}
 
-            </form>
-            
-            <nav className="lg:flex lg:justify-between w-full max-w-md">
-                <Link
-                    className='block text-center my-5 text-slate-500 uppercase text-sm'
-                    to='/registrar'
-                >¿No tienes una cuenta? Regístrate</Link>
-                <Link
-                    className='block text-center my-5 text-slate-500 uppercase text-sm'
-                    to='/olvide-password'
-                >Olvidé mi Password</Link>
-            </nav>
+                <form 
+                    className="my-10 bg-white shadow rounded-lg p-10 w-full"
+                    onSubmit={handleSubmit}
+                >
+                    <div className="my-5">  
+                        <label
+                            className='uppercase text-gray-600 block text-xl font-bold'
+                            htmlFor="email"
+                        >Email</label>
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="Email de Registro"
+                            className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                    </div> 
+                    
+                    <div className="my-5">  
+                        <label
+                            className='uppercase text-gray-600 block text-xl font-bold'
+                            htmlFor="password"
+                        >password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="password de Registro"
+                            className='w-full mt-3 p-3 border rounded-xl bg-gray-50'
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                    </div> 
+
+                    <input
+                        type="submit"
+                        value="Iniciar Sesión"
+                        className='bg-[#1C7B3E] mb-5 w-full py-3 text-white uppercase font-bold rounded
+                        hover:cursor-pointer hover:bg-[#1C7B3E] transition-colors'
+                    />
+                </form>
+
+                <nav className="lg:flex lg:justify-between w-full">
+                    <Link
+                        className='block text-center my-5 text-slate-500 uppercase text-sm'
+                        to='/registrar'
+                    >¿No tienes una cuenta? Regístrate</Link>
+                    <Link
+                        className='block text-center my-5 text-slate-500 uppercase text-sm'
+                        to='/olvide-password'
+                    >Olvidé mi Password</Link>
+                </nav>
+            </div>
         </div>
     )
 }
