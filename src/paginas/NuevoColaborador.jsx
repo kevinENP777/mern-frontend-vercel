@@ -11,7 +11,7 @@ const NuevoColaborador = () => {
         obtenerProyecto(params.id)
     }, [])
 
-    return (
+    return (  
         <>
             <h1 className='text-4xl font-black'>Añadir Colaborador(a) al Proyecto: {proyecto.nombre}</h1>
 

@@ -1,8 +1,17 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import Alerta from "../components/Alerta"
 import clienteAxios from "../config/clienteAxios"
 import logosena from './img/logosena.png' // imagen de la esquina derecha de arriba
+
+const Alerta = ({ alerta }) => {
+  return (
+    <div className={`${alerta.error ? 'from-red-400 to-red-600' : 
+    'from-green-500 to-green-700'} bg-gradient-to-br text-center p-3 rounded-xl 
+    uppercase text-white font-bold text-sm my-10`}>
+      {alerta.msg}
+    </div>
+  )
+}
 
 const Registrar = () => {
   const [ nombre, setNombre ] = useState('')
@@ -37,7 +46,7 @@ const Registrar = () => {
     }
   
     setAlerta({}) // limpia el error 
-// crea el usuario desde Api
+    // crea el usuario desde Api
     try {
       const formData = new FormData()
       formData.append('nombre', nombre)
@@ -71,8 +80,8 @@ const Registrar = () => {
 
   return (
     <>
-      <h1 className="text-green-600 font-black text-6xl capitalize">gestion de trabajos de {' '}
-          <span className="text-slate-600">gestion de investigaciones</span>
+      <h1 className="text-green-600 font-black text-6xl capitalize">Fondo Emprender{' '}
+          <span className="text-slate-600"> Sena </span>
       </h1>
 
       {msg && <Alerta alerta={alerta}/>}

@@ -211,7 +211,7 @@ const ProyectosProvider = ({ children }) => {
             const { data } = await clienteAxios.post('/tareas', tarea, config)
             // console.log(data)
 
-            //Agregar la tarea al state
+            // Agregar la tarea al state
             const proyectoActualizado = {...proyecto}
             proyectoActualizado.tareas=[...proyecto.tareas, data]
             setProyecto(proyectoActualizado)
