@@ -118,4 +118,3 @@ const FormularioProyecto = () => {
 }
 
 export default FormularioProyecto
-

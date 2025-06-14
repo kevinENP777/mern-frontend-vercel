@@ -39,8 +39,8 @@ const OlvidePassword = () => {
   return (
     <>
       <h1 className="text-green-600 font-black text-4xl capitalize">
-        demuestre que el proyecto generará empleo {' '}
-        <span className="text-slate-700"> directo o indirecto </span>
+        FOndo EMprender {' '}
+        <span className="text-slate-700"> Sena</span>
       </h1>
 
       {msg && <Alerta alerta={alerta} />}
