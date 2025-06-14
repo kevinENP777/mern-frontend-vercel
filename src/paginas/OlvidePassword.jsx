@@ -39,7 +39,7 @@ const OlvidePassword = () => {
   return (
     <>
       <h1 className="text-green-600 font-black text-4xl capitalize">
-        FOndo EMprender {' '}
+        Fondo Emprender {' '}
         <span className="text-slate-700"> Sena</span>
       </h1>
 
