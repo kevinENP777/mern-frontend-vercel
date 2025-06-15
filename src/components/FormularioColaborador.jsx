@@ -1,17 +1,18 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom' // ✅ AÑADIDO PARA REDIRECCIONAR
+import { useNavigate } from 'react-router-dom'
 import useProyectos from '../hooks/useProyectos'
 import Alerta from './Alerta'
 
 const FormularioColaborador = () => {
   const [email, setEmail] = useState('')
-  const navigate = useNavigate() // ✅ AÑADIDO: Hook para redirigir
+  const navigate = useNavigate()
 
   const { mostrarAlerta, alerta, submitColaborador, proyecto } = useProyectos()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    // ✅ Validación de campos vacíos
     if (email.trim() === '') {
       mostrarAlerta({
         msg: 'El email es obligatorio',
@@ -20,6 +21,7 @@ const FormularioColaborador = () => {
       return
     }
 
+    // ✅ Validación de formato de email
     if (!email.includes('@') || !email.includes('.')) {
       mostrarAlerta({
         msg: 'El email está mal escrito',
@@ -28,18 +30,22 @@ const FormularioColaborador = () => {
       return
     }
 
-    mostrarAlerta({
-      msg: 'Colaborador añadido correctamente',
-      error: false
-    })
-
+    // ✅ Enviar email al backend
     const resultado = await submitColaborador(email)
 
-    // ✅ CAMBIO AÑADIDO: Guardar en localStorage y redirigir tras 2s
-    if (resultado.ok) {
-      localStorage.setItem('EditarProyecto', email)
+    if (resultado?.ok) {
+      // ✅ Mostrar alerta
+      mostrarAlerta({
+        msg: 'Colaborador añadido correctamente',
+        error: false
+      })
+
+      // ✅ Guardar email en localStorage para usar en EditarProyecto.jsx
+      localStorage.setItem('colaboradorEmail', email)
+
+      // ✅ Redirigir después de 2 segundos
       setTimeout(() => {
-        navigate(`/proyectos/${proyecto.id}`)
+        navigate(`/proyectos/${proyecto._id}`)
       }, 2000)
     }
   }
@@ -54,7 +60,7 @@ const FormularioColaborador = () => {
       {msg && <Alerta alerta={alerta} />}
       <div className='mb-5'>
         <label
-          className='text-gray-700 uppefont-bold text-sm'
+          className='text-gray-700 font-bold text-sm'
           htmlFor='email'
         >
           Email Colaborador
