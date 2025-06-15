@@ -9,40 +9,41 @@ const FormularioColaborador = () => {
 
   const { mostrarAlerta, alerta, submitColaborador, proyecto } = useProyectos()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async e => {
+  e.preventDefault()
 
-    if (email.trim() === '') {
-      mostrarAlerta({
-        msg: 'El email es obligatorio',
-        error: true
-      })
-      return
-    }
-
-    if (!email.includes('@') || !email.includes('.')) {
-      mostrarAlerta({
-        msg: 'El email está mal escrito',
-        error: true
-      })
-      return
-    }
-
+  if (email.trim() === '') {
     mostrarAlerta({
-      msg: 'Colaborador añadido correctamente',
-      error: false
+      msg: 'El email es obligatorio',
+      error: true
     })
-
-    const resultado = await submitColaborador(email)
-
-    // ✅ CAMBIO AÑADIDO: Guardar en localStorage y redirigir tras 2s
-    if (resultado.ok) {
-      localStorage.setItem('colaboradorEmail', email)
-      setTimeout(() => {
-        navigate(`/proyectos/${proyecto._id}`)
-      }, 2000)
-    }
+    return
   }
+
+  if (!email.includes('@') || !email.includes('.')) {
+    mostrarAlerta({
+      msg: 'El email está mal escrito',
+      error: true
+    })
+    return
+  }
+
+  try {
+    await submitColaborador(email)
+
+    // ✅ Guarda el correo en localStorage
+    localStorage.setItem('colaboradorEmail', email)
+
+    // ✅ Redirige a la página anterior (editar proyecto)
+    navigate(`/proyectos/${proyecto._id}`)
+
+  } catch (error) {
+    mostrarAlerta({
+      msg: 'Hubo un error al añadir el colaborador',
+      error: true
+    })
+  }
+}
 
   const { msg } = alerta
 
