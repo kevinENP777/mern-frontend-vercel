@@ -43,11 +43,11 @@ const EditarProyecto = () => {
             <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-6xl">
 
                 {/* ✅ CAMBIO AÑADIDO: Alerta con el email del colaborador si existe */}
-                {nuevoColaborador && (
+                {/* {nuevoColaborador && (
                     <div className="bg-green-100 border border-green-400 text-green-800 px-4 py-3 rounded relative mb-6 text-center">
                         ✅ Colaborador añadido: <strong>{nuevoColaborador}</strong>
                     </div>
-                )}
+                )} */}
 
                 <div className='flex flex-col md:flex-row justify-between items-start md:items-center mb-10'>
                     <h1 className='font-extrabold text-3xl md:text-4xl text-green-800 mb-4 md:mb-0'>
