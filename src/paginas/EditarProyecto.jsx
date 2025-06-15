@@ -36,7 +36,7 @@ const EditarProyecto = () => {
 
     const { nombre } = proyecto
 
-    if (cargando) return 'Cargando...'
+    if (cargando) return '' // cargando
 
     return (
         <div className="px-4 py-6 bg-gradient-to-br from-green-50 to-green-100 min-h-screen flex justify-center items-start">
@@ -71,6 +71,16 @@ const EditarProyecto = () => {
 
                 <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-600 max-w-4xl mx-auto">
                     <FormularioProyecto />
+
+                    {/* ✅ CAMBIO AÑADIDO: Mostrar sección Colaborador si se añadió */}
+                    {nuevoColaborador && (
+                        <div className="mt-10 bg-green-50 p-4 rounded-xl shadow-inner border border-green-300">
+                            <h2 className="text-green-800 text-2xl font-bold">Colaborador</h2>
+                            <p className="text-gray-700 mt-2">
+                                <span className="font-semibold">Correo añadido:</span> {nuevoColaborador}
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
