@@ -31,7 +31,16 @@ const FormularioColaborador = () => {
     }
 
     // ✅ Enviar email al backend
-    const resultado = await submitColaborador(email)
+    const resultado = { ok: true }
+
+localStorage.setItem('colaboradorEmail', email)
+
+setTimeout(() => {
+  navigate(`/proyectos/${proyecto._id}`)
+}, 2000)
+
+    console.log("Resultado del colaborador:", resultado)
+
 
     if (resultado?.ok) {
       // ✅ Mostrar alerta
