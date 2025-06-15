@@ -36,7 +36,7 @@ const EditarProyecto = () => {
 
     const { nombre } = proyecto
 
-    if (cargando) return '' // cargando
+    //if (cargando) return '' // cargando
 
     return (
         <div className="px-4 py-6 bg-gradient-to-br from-green-50 to-green-100 min-h-screen flex justify-center items-start">

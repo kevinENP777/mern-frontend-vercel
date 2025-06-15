@@ -1,16 +1,15 @@
 import { useState } from 'react'
-
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom' // ✅ AÑADIDO PARA REDIRECCIONAR
 import useProyectos from '../hooks/useProyectos'
 import Alerta from './Alerta'
 
 const FormularioColaborador = () => {
   const [email, setEmail] = useState('')
+  const navigate = useNavigate() // ✅ AÑADIDO: Hook para redirigir
 
-  const { mostrarAlerta, alerta, submitColaborador } = useProyectos()
+  const { mostrarAlerta, alerta, submitColaborador, proyecto } = useProyectos()
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (email.trim() === '') {
@@ -34,9 +33,15 @@ const FormularioColaborador = () => {
       error: false
     })
 
-    submitColaborador(email)
+    const resultado = await submitColaborador(email)
 
-    // setEmail('') // Puedes limpiar el campo si quieres
+    // ✅ CAMBIO AÑADIDO: Guardar en localStorage y redirigir tras 2s
+    if (resultado.ok) {
+      localStorage.setItem('colaboradorEmail', email)
+      setTimeout(() => {
+        navigate(`/proyectos/${proyecto._id}`)
+      }, 2000)
+    }
   }
 
   const { msg } = alerta
