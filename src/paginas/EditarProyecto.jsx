@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect,  useState  } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import FormularioProyecto from "../components/FormularioProyecto"
 import useProyectos from "../hooks/useProyectos"
@@ -8,8 +8,20 @@ const EditarProyecto = () => {
     const navigate = useNavigate()
     const { obtenerProyecto, proyecto, cargando, eliminarProyecto } = useProyectos()
 
+    // ✅ CAMBIO AÑADIDO: Estado para guardar el email del colaborador nuevo
+    const [nuevoColaborador, setNuevoColaborador] = useState('')
+
     useEffect(() => {
         obtenerProyecto(params.id)
+    }, [])
+
+    // ✅ CAMBIO AÑADIDO: Revisamos si hay un colaborador recién añadido en localStorage
+    useEffect(() => {
+        const emailGuardado = localStorage.getItem('colaboradorEmail')
+        if (emailGuardado) {
+            setNuevoColaborador(emailGuardado)
+            localStorage.removeItem('colaboradorEmail')
+        }
     }, [])
 
     const handleClick = () => {
@@ -29,6 +41,14 @@ const EditarProyecto = () => {
     return (
         <div className="px-4 py-6 bg-gradient-to-br from-green-50 to-green-100 min-h-screen flex justify-center items-start">
             <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-6xl">
+
+                {/* ✅ CAMBIO AÑADIDO: Alerta con el email del colaborador si existe */}
+                {nuevoColaborador && (
+                    <div className="bg-green-100 border border-green-400 text-green-800 px-4 py-3 rounded relative mb-6 text-center">
+                        ✅ Colaborador añadido: <strong>{nuevoColaborador}</strong>
+                    </div>
+                )}
+
                 <div className='flex flex-col md:flex-row justify-between items-start md:items-center mb-10'>
                     <h1 className='font-extrabold text-3xl md:text-4xl text-green-800 mb-4 md:mb-0'>
                         Editar Proyecto: <span className="text-gray-700">{nombre}</span>
