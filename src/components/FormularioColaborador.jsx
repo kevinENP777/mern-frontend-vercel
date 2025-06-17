@@ -12,7 +12,7 @@ const FormularioColaborador = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // ✅ Validación de campos vacíos
+    // Validación de campos vacíos
     if (email.trim() === '') {
       mostrarAlerta({
         msg: 'El email es obligatorio',
@@ -21,7 +21,7 @@ const FormularioColaborador = () => {
       return
     }
 
-    // ✅ Validación de formato de email
+    // Validación de formato de email
     if (!email.includes('@') || !email.includes('.')) {
       mostrarAlerta({
         msg: 'El email está mal escrito',
@@ -30,33 +30,28 @@ const FormularioColaborador = () => {
       return
     }
 
-    // ✅ Enviar email al backend
-    const resultado = { ok: true }
+    // Intentar buscar colaborador en la BD
+    const resultado = await submitColaborador(email)
 
-localStorage.setItem('colaboradorEmail', email)
-
-setTimeout(() => {
-  navigate(`/proyectos/${proyecto._id}`)
-}, 2000)
-
-    console.log("Resultado del colaborador:", resultado)
-
-
-    if (resultado?.ok) {
-      // ✅ Mostrar alerta
+    if (!resultado || resultado.error) {
       mostrarAlerta({
-        msg: 'Colaborador añadido correctamente',
-        error: false
+        msg: 'Usuario no encontrado',
+        error: true
       })
-
-      // ✅ Guardar email en localStorage para usar en EditarProyecto.jsx
-      localStorage.setItem('colaboradorEmail', email)
-
-      // ✅ Redirigir después de 2 segundos
-      setTimeout(() => {
-        navigate(`/proyectos/${proyecto._id}`)
-      }, 2000)
+      return
     }
+
+    // Si se encontró el colaborador
+    mostrarAlerta({
+      msg: 'Colaborador añadido correctamente',
+      error: false
+    })
+
+    localStorage.setItem('colaboradorEmail', email)
+
+    setTimeout(() => {
+      navigate(`/proyectos/${proyecto._id}`)
+    }, 2000)
   }
 
   const { msg } = alerta
