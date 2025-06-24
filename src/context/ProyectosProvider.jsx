@@ -359,22 +359,24 @@ const ProyectosProvider = ({ children }) => {
 
 // fin de submitColaborador
 
-    const agregarColaborador = async email => {
-        try {
-            const token = localStorage.getItem('token')
-            if (!token) return
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                }
-            }
-            const { data } = await clienteAxios.post(`/proyectos//${proyecto._id}`, { email }, config)
-        } catch (error) {
-            console.log(error.response)
-        }
-        
+   const agregarColaborador = async email => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) return
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
     }
+
+    // ✅ Ruta correcta con endpoint bien definido
+    const { data } = await clienteAxios.post(`/proyectos/${proyecto._id}/colaboradores`, { email }, config)
+  } catch (error) {
+    console.log(error.response)
+  }
+}
+// cambios hechos para que el provider retorne el contexto con los valores y funciones necesarias
 
     return(
         <ProyectosContext.Provider
