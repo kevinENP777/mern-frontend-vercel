@@ -1,18 +1,14 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import useProyectos from '../hooks/useProyectos'
 import Alerta from './Alerta'
 
 const FormularioColaborador = () => {
   const [email, setEmail] = useState('')
-  const navigate = useNavigate()
-
-  const { mostrarAlerta, alerta, submitColaborador, proyecto } = useProyectos()
+  const { mostrarAlerta, alerta, submitColaborador } = useProyectos()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // Validación de campos vacíos
     if (email.trim() === '') {
       mostrarAlerta({
         msg: 'El email es obligatorio',
@@ -21,7 +17,6 @@ const FormularioColaborador = () => {
       return
     }
 
-    // Validación de formato de email
     if (!email.includes('@') || !email.includes('.')) {
       mostrarAlerta({
         msg: 'El email está mal escrito',
@@ -30,7 +25,6 @@ const FormularioColaborador = () => {
       return
     }
 
-    // Intentar buscar colaborador en la BD
     const resultado = await submitColaborador(email)
 
     if (!resultado || resultado.error) {
@@ -41,17 +35,7 @@ const FormularioColaborador = () => {
       return
     }
 
-    // Si se encontró el colaborador
-    mostrarAlerta({
-      msg: 'Colaborador añadido correctamente',
-      error: false
-    })
-
-    localStorage.setItem('colaboradorEmail', email)
-
-    setTimeout(() => {
-      navigate(`/proyectos/${proyecto._id}`)
-    }, 2000)
+    // ✅ NO hacemos más aquí. Solo se muestra el colaborador. Nada más.
   }
 
   const { msg } = alerta
