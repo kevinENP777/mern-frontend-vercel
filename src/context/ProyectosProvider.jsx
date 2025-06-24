@@ -359,41 +359,22 @@ const ProyectosProvider = ({ children }) => {
 
 // fin de submitColaborador
 
-    const agregarColaborador = async ({ email }) => {
-    try {
-        const token = localStorage.getItem('token')
-        if (!token) return
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+    const agregarColaborador = async email => {
+        try {
+            const token = localStorage.getItem('token')
+            if (!token) return
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
             }
+            const { data } = await clienteAxios.post(`/proyectos//${proyecto._id}`, { email }, config)
+        } catch (error) {
+            console.log(error.response)
         }
-        const { data } = await clienteAxios.post(`/proyectos/colaboradores/${proyecto._id}`, { email }, config)
-
-        // ✅ Agregar al proyecto en memoria
-        const proyectoActualizado = { ...proyecto }
-        proyectoActualizado.colaboradores = [...proyecto.colaboradores, data]
-        setProyecto(proyectoActualizado)
-
-        // ✅ Mostrar alerta
-        setAlerta({
-            msg: 'Colaborador añadido correctamente',
-            error: false
-        })
-
-    } catch (error) {
-        console.log(error.response)
-        setAlerta({
-            msg: error.response?.data?.msg || 'Error al añadir colaborador',
-            error: true
-        })
+        
     }
-}
-
-// FIN DE submitColaborador
-
-
 
     return(
         <ProyectosContext.Provider
