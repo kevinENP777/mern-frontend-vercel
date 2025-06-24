@@ -8,7 +8,6 @@ const EditarProyecto = () => {
     const navigate = useNavigate()
     const { obtenerProyecto, proyecto, cargando, eliminarProyecto } = useProyectos()
 
-    // ✅ Corrección aplicada aquí
     const [nuevoColaborador, setNuevoColaborador] = useState('')
 
     useEffect(() => {
@@ -68,6 +67,17 @@ const EditarProyecto = () => {
                             <p className="text-gray-700 mt-2">
                                 <span className="font-semibold">Correo añadido:</span> {nuevoColaborador}
                             </p>
+                        </div>
+                    )}
+
+                    {proyecto.colaboradores?.length > 0 && (
+                        <div className="mt-6 bg-white p-4 rounded-xl shadow border border-gray-200">
+                            <h3 className="text-green-700 text-xl font-bold mb-2">Todos los colaboradores</h3>
+                            <ul className="list-disc list-inside text-gray-700 text-sm">
+                                {proyecto.colaboradores.map(colab => (
+                                    <li key={colab._id}>{colab.email}</li>
+                                ))}
+                            </ul>
                         </div>
                     )}
                 </div>
