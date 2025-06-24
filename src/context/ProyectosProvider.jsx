@@ -326,7 +326,7 @@ const ProyectosProvider = ({ children }) => {
     // }
 
     // cambio de submitColaborador para que busque por proyecto
-    const submitColaborador = async email => {
+   const submitColaborador = async email => {
     setCargando(true)
     try {
         const token = localStorage.getItem('token');
@@ -342,15 +342,18 @@ const ProyectosProvider = ({ children }) => {
         const { data } = await clienteAxios.post(`/proyectos/colaboradores/${proyecto._id}`, { email }, config);
         setColaborador(data)
         setAlerta({})
+        return data
     } catch (error) {
         setAlerta({
             msg: error.response?.data?.msg || 'Error al buscar colaborador',
             error: true
         })
+        return { error: true }
     } finally {
         setCargando(false)
     }
 }
+
 // fin de submitColaborador
 
     const agregarColaborador = async email => {

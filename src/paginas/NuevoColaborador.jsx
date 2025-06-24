@@ -4,30 +4,44 @@ import useProyectos from "../hooks/useProyectos"
 import { useParams } from "react-router-dom"
 
 
-const submitColaborador = async email => {
-    setCargando(true)
-    try {
-        const token = localStorage.getItem('token');
-        if (!token) return;
+const NuevoColaborador = () => {
 
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            }
-        };
+    const { obtenerProyecto, proyecto, cargando, colaborador, agregarColaborador } = useProyectos()
+    const params = useParams()
+    useEffect(() => {
+        obtenerProyecto(params.id)
+    }, [])
 
-        const { data } = await clienteAxios.post(`/proyectos/colaboradores/${proyecto._id}`, { email }, config);
-        setColaborador(data)
-        setAlerta({})
-        return data  // <-- ESTO FALTABA
-    } catch (error) {
-        setAlerta({
-            msg: error.response?.data?.msg || 'Error al buscar colaborador',
-            error: true
-        })
-        return { error: true }  // <-- EVITA QUE SE QUEDE PEGADO
-    } finally {
-        setCargando(false)
-    }
+    return (  
+        <>
+            <h1 className='text-4xl font-black'>Añadir Colaborador(a) al Proyecto: {proyecto.nombre}</h1>
+
+            <div className='mt-10 flex justify-center'>
+                <FormularioColaborador />
+            </div>
+            {cargando ? <p className="text-center">Cargando...</p> : colaborador?._id && (
+                  <div className='flex justify-center mt-10'>
+                      <div className='bg-white py-10 px-5 md:w-1/2 rounded-lg shadow'>
+                          <h2 className='text-center mb-10 text-2xl font-bold'>Resultado:</h2>
+                          <div className='flex justify-between items-center'>
+                              <p>{colaborador.nombre}</p>
+
+                              <button
+                                  type="button"
+                                  className='bg-slate-500 px-5 py-2 rounded-lg uppercase text-white font-bold text-sm'
+                                  onClick={() => agregarColaborador({
+                                     email: colaborador.email 
+                                    })}
+                              >
+                                  Agregar al Proyecto
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              )}
+
+        </>
+    )
 }
+
+export default NuevoColaborador
