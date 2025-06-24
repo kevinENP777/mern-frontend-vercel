@@ -35,7 +35,7 @@ const FormularioColaborador = () => {
       return
     }
 
-    // ✅ NO hacemos más aquí. Solo se muestra el colaborador. Nada más.
+    // 
   }
 
   const { msg } = alerta
@@ -45,7 +45,8 @@ const FormularioColaborador = () => {
       className='bg-white py-10 px-5 md:w-1/2 rounded-lg shadow'
       onSubmit={handleSubmit}
     >
-      {msg && <Alerta alerta={alerta} />}
+      {/* {msg && <Alerta alerta={alerta} />} */}
+      
       <div className='mb-5'>
         <label
           className='text-gray-700 font-bold text-sm'
