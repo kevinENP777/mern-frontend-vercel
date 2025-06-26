@@ -371,7 +371,7 @@ const ProyectosProvider = ({ children }) => {
     }
 
     // ✅ Ruta correcta con endpoint bien definido
-    const { data } = await clienteAxios.post(`/proyectos/${proyecto._id}/colaboradores`, { email }, config)
+    const { data } = await clienteAxios.post(`/proyectos/colaboradores/${proyecto._id}`, { email }, config)
   } catch (error) {
     console.log(error.response)
   }
