@@ -44,5 +44,4 @@ const NuevoColaborador = () => {
     )
 }
 
-
 export default NuevoColaborador
