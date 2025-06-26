@@ -1,52 +1,68 @@
-import { useState } from 'react'
-import useProyectos from '../hooks/useProyectos'
-import Alerta from './Alerta'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useProyectos from '../hooks/useProyectos';
+import Alerta from './Alerta';
 
 const FormularioColaborador = () => {
-  const [email, setEmail] = useState('')
-  const { mostrarAlerta, alerta, submitColaborador } = useProyectos()
+  const [email, setEmail] = useState('');
+  const { mostrarAlerta, alerta, submitColaborador } = useProyectos();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (email.trim() === '') {
       mostrarAlerta({
         msg: 'El email es obligatorio',
         error: true
-      })
-      return
+      });
+      return;
     }
 
     if (!email.includes('@') || !email.includes('.')) {
       mostrarAlerta({
         msg: 'El email está mal escrito',
         error: true
-      })
-      return
+      });
+      return;
     }
 
-    const resultado = await submitColaborador(email)
+    const resultado = await submitColaborador(email);
 
     if (!resultado || resultado.error) {
       mostrarAlerta({
         msg: 'Usuario no encontrado',
         error: true
-      })
-      return
+      });
+      return;
     }
 
-    // 
-  }
+    // ✅ Mostrar alerta
+    mostrarAlerta({
+      msg: 'Colaborador añadido correctamente',
+      error: false
+    });
 
-  const { msg } = alerta
+    // ✅ Guardar en localStorage
+    const guardados = JSON.parse(localStorage.getItem('colaboradores')) || [];
+    guardados.push(email);
+    localStorage.setItem('colaboradores', JSON.stringify(guardados));
+
+    // ✅ Redirigir a la página anterior
+    setTimeout(() => {
+      navigate(-1); // vuelve a la página anterior
+    }, 2000);
+  };
+
+  const { msg } = alerta;
 
   return (
     <form
       className='bg-white py-10 px-5 md:w-1/2 rounded-lg shadow'
       onSubmit={handleSubmit}
     >
-      {/* {msg && <Alerta alerta={alerta} />} */}
-      
+      {msg && <Alerta alerta={alerta} />}
+
       <div className='mb-5'>
         <label
           className='text-gray-700 font-bold text-sm'
@@ -69,7 +85,7 @@ const FormularioColaborador = () => {
         value='Buscar Patrocinador'
       />
     </form>
-  )
-}
+  );
+};
 
-export default FormularioColaborador
+export default FormularioColaborador;
