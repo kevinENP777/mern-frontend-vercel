@@ -14,6 +14,7 @@ const Proyecto = () => {
     cargando,
     handleModalTarea,
     alerta,
+    mostrarAlerta // ✅ añadido
   } = useProyectos();
 
   const [colaboradores, setColaboradores] = useState([]);
@@ -26,6 +27,19 @@ const Proyecto = () => {
     const guardados = JSON.parse(localStorage.getItem('colaboradores')) || [];
     setColaboradores(guardados);
   }, []);
+
+  // ✅ Función para eliminar colaborador
+  const eliminarColaborador = (indice) => {
+    const nuevosColaboradores = [...colaboradores];
+    nuevosColaboradores.splice(indice, 1);
+    setColaboradores(nuevosColaboradores);
+    localStorage.setItem('colaboradores', JSON.stringify(nuevosColaboradores));
+
+    mostrarAlerta({
+      msg: 'Colaborador eliminado correctamente',
+      error: false
+    });
+  };
 
   const { nombre } = proyecto;
   const { msg } = alerta;
@@ -77,7 +91,18 @@ const Proyecto = () => {
           <li className="text-sm text-gray-500">Aún no hay colaboradores</li>
         ) : (
           colaboradores.map((correo, index) => (
-            <li key={index} className="text-sm text-gray-700">{correo}</li>
+            <li
+              key={index}
+              className="text-sm text-gray-700 flex items-center justify-between mb-2"
+            >
+              {correo}
+              <button
+                onClick={() => eliminarColaborador(index)}
+                className="ml-4 bg-red-600 text-white text-xs px-2 py-1 rounded hover:bg-red-700 transition-colors"
+              >
+                Eliminar
+              </button>
+            </li>
           ))
         )}
       </ul>
