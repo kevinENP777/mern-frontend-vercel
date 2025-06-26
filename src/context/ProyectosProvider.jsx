@@ -300,62 +300,62 @@ const ProyectosProvider = ({ children }) => {
         }
     };
 
-    // const submitColaborador = async email => {
-    //     setCargando(true)
-    //     try {
-    //         const token = localStorage.getItem('token');
-    //         if (!token) return;
+ const submitColaborador = async email => {
+     setCargando(true)
+     try {
+         const token = localStorage.getItem('token');
+         if (!token) return;
     
-    //         const config = {
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 Authorization: `Bearer ${token}`
-    //             }
-    //         };
-    //         const { data } = await clienteAxios.post('/proyectos/', { email }, config);
-    //         setColaborador(data)
-    //         setAlerta({})
-    //     } catch (error) {
-    //         setAlerta({
-    //             msg: error.response.data.msg,
-    //             error: true
-    //         })
-    //     }finally{
-    //         setCargando(false)
-    //     }
-    // }
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            };
+            const { data } = await clienteAxios.post('/proyectos/', { email }, config);
+            setColaborador(data)
+         setAlerta({})
+     } catch (error) {
+            setAlerta({
+                msg: error.response.data.msg,
+                error: true
+         })
+        }finally{
+            setCargando(false)
+        }
+ }
 
     // cambio de submitColaborador para que busque por proyecto
     
-  const submitColaborador = async email => {
-    setCargando(true)
-    try {
-        const token = localStorage.getItem('token');
-        if (!token) return;
+//   const submitColaborador = async email => {
+//     setCargando(true)
+//     try {
+//         const token = localStorage.getItem('token');
+//         if (!token) return;
 
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            }
-        };
+//         const config = {
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 Authorization: `Bearer ${token}`
+//             }
+//         };
 
-        // 👇 Esta es la ruta correcta para BUSCAR colaborador
-        const { data } = await clienteAxios.post(`/proyectos/colaboradores`, { email }, config);
+//         // 👇 Esta es la ruta correcta para BUSCAR colaborador
+//         const { data } = await clienteAxios.post(`/proyectos/colaboradores`, { email }, config);
         
-        setColaborador(data)
-        setAlerta({})
-        return data
-    } catch (error) {
-        setAlerta({
-            msg: error.response?.data?.msg || 'Error al buscar colaborador',
-            error: true
-        })
-        return { error: true }
-    } finally {
-        setCargando(false)
-    }
-}
+//         setColaborador(data)
+//         setAlerta({})
+//         return data
+//     } catch (error) {
+//         setAlerta({
+//             msg: error.response?.data?.msg || 'Error al buscar colaborador',
+//             error: true
+//         })
+//         return { error: true }
+//     } finally {
+//         setCargando(false)
+//     }
+// }
 
 // fin de submitColaborador
 
