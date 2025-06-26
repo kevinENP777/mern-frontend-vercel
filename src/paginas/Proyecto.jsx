@@ -5,6 +5,15 @@ import ModalFormularioTarea from '../components/ModalFormularioTarea';
 import ModalEliminarTarea from '../components/ModalEliminarTareas';
 import Tarea from '../components/Tarea';
 import Alerta from '../components/Alerta';
+// añadido
+const [colaboradores, setColaboradores] = useState([]);
+
+// añadido
+useEffect(() => {
+  const guardados = JSON.parse(localStorage.getItem('colaboradores')) || [];
+  setColaboradores(guardados);
+}, []);
+// fin añadido
 
 const Proyecto = () => {
     const params = useParams();
@@ -83,6 +92,17 @@ const Proyecto = () => {
 
             <div className='flex items-center justify-between mt-10'> 
                 <p className='font-bold text-xl text-green-700'>Colaborador</p>
+                <h2 className="text-lg font-bold mt-10">Colaborador</h2>
+                // añadido
+                    <ul className="mt-2">
+                    {colaboradores.map((correo, index) => (
+                        <li key={index} className="text-sm text-gray-700">
+                        {correo}
+                        </li>
+                    ))}
+                    </ul>
+                    // fin añadido
+
                 <Link
                     to={`/proyectos/nuevo-colaborador/${proyecto._id}`}
                     className='text-green-600 hover:text-black uppercase font-bold'

@@ -327,35 +327,69 @@ const ProyectosProvider = ({ children }) => {
 
     // cambio de submitColaborador para que busque por proyecto
     
-  const submitColaborador = async email => {
-    setCargando(true)
-    try {
-        const token = localStorage.getItem('token');
-        if (!token) return;
+//   const submitColaborador = async email => {
+//     setCargando(true)
+//     try {
+//         const token = localStorage.getItem('token');
+//         if (!token) return;
 
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            }
-        };
+//         const config = {
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 Authorization: `Bearer ${token}`
+//             }
+//         };
 
-        // 👇 Esta es la ruta correcta para BUSCAR colaborador
-        const { data } = await clienteAxios.post(`/proyectos/colaboradores`, { email }, config);
+//         // 👇 Esta es la ruta correcta para BUSCAR colaborador
+//         const { data } = await clienteAxios.post(`/proyectos/colaboradores`, { email }, config);
         
-        setColaborador(data)
-        setAlerta({})
-        return data
-    } catch (error) {
-        setAlerta({
-            msg: error.response?.data?.msg || 'Error al buscar colaborador',
-            error: true
-        })
-        return { error: true }
-    } finally {
-        setCargando(false)
-    }
-}
+//         setColaborador(data)
+//         setAlerta({})
+//         return data
+//     } catch (error) {
+//         setAlerta({
+//             msg: error.response?.data?.msg || 'Error al buscar colaborador',
+//             error: true
+//         })
+//         return { error: true }
+//     } finally {
+//         setCargando(false)
+//     }
+// }
+
+
+// 2
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (email === '' || !email.includes('@')) {
+    mostrarAlerta({
+      msg: 'Correo no válido',
+      error: true
+    });
+    return;
+  }
+
+  const resultado = await submitColaborador(email); // llama al hook que manda a la API
+
+  if (resultado) {
+    mostrarAlerta({
+      msg: 'Colaborador añadido correctamente',
+      error: false
+    });
+
+    // Guardar en localStorage
+    const correos = JSON.parse(localStorage.getItem('colaboradores')) || [];
+    correos.push(email);
+    localStorage.setItem('colaboradores', JSON.stringify(correos));
+
+    // Redirigir a la página del proyecto
+    setTimeout(() => {
+      navigate(`/proyectos/${params.id}`);
+    }, 2000);
+  }
+};
+
 
 // fin de submitColaborador
 
