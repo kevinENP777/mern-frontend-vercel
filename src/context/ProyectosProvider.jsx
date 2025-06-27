@@ -9,6 +9,7 @@ const ProyectosContext = createContext()
 const ProyectosProvider = ({ children }) => {
 
     const [proyectos, setProyectos] = useState([])
+    const [busqueda, setBusqueda] = useState(''); //  nuevo estado para busqueda
     const [alerta, setAlerta] = useState({})
     const [proyecto, setProyecto] = useState({})
     const [cargando, setCargando] = useState(false)
@@ -340,7 +341,7 @@ const ProyectosProvider = ({ children }) => {
             }
         };
 
-        // 👇 Esta es la ruta correcta para BUSCAR colaborador
+        //  Esta es la ruta correcta para BUSCAR colaborador y agregarlo a proyecto
         const { data } = await clienteAxios.post(`/proyectos/colaboradores`, { email }, config);
         
         setColaborador(data)
@@ -400,6 +401,8 @@ const ProyectosProvider = ({ children }) => {
                 submitColaborador,
                 colaborador,
                 agregarColaborador,
+                busqueda,          //  nuevo
+                setBusqueda        //  nuevo
             }}
         >
             {children}

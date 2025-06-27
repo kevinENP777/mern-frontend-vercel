@@ -49,7 +49,7 @@ const Login = () => {
         <div>
             <h1 className="text-green-600 font-black text-3xl capitalize text-center drop-shadow-lg">
                 Fondo Emprender{' '}
-                <span className="text-black"> SENA. </span>
+                <span className="text-black"> SENA </span>
             </h1>
 
             {/* CONTENEDOR PARA IGUALAR ANCHO */}
