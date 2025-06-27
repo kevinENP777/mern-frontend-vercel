@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import useProyectos from '../hooks/useProyectos';
 import Alerta from './Alerta';
 
 const FormularioColaborador = () => {
   const [email, setEmail] = useState('');
   const { mostrarAlerta, alerta, submitColaborador } = useProyectos();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,27 +29,14 @@ const FormularioColaborador = () => {
 
     if (!resultado || resultado.error) {
       mostrarAlerta({
-        msg: 'Usuario no encontrado',
+        msg: 'Colaborador no encontrado',
         error: true
       });
       return;
     }
 
-    // ✅ Mostrar alerta
-    mostrarAlerta({
-      msg: 'Colaborador añadido correctamente',
-      error: false
-    });
-
-    // ✅ Guardar en localStorage
-    const guardados = JSON.parse(localStorage.getItem('colaboradores')) || [];
-    guardados.push(email);
-    localStorage.setItem('colaboradores', JSON.stringify(guardados));
-
-    // ✅ Redirigir a la página anterior
-    setTimeout(() => {
-      navigate(-1); // vuelve a la página anterior
-    }, 2000);
+    // ✅ Ya no hacemos nada más aquí
+    // La lógica sigue en el componente padre cuando se hace clic en "Agregar al Proyecto"
   };
 
   const { msg } = alerta;
