@@ -30,14 +30,17 @@ const NuevoColaborador = () => {
       error: false,
     });
 
-    //  Guardar en localStorage
-    const guardados = JSON.parse(localStorage.getItem("colaboradores")) || [];
-    if (!guardados.includes(colaborador.email)) {
-      guardados.push(colaborador.email);
-      localStorage.setItem("colaboradores", JSON.stringify(guardados));
+    //  Guardar en localStorage por proyecto
+    const todos = JSON.parse(localStorage.getItem("colaboradores")) || {};
+    const delProyecto = todos[params.id] || [];
+
+    if (!delProyecto.includes(colaborador.email)) {
+      delProyecto.push(colaborador.email);
+      todos[params.id] = delProyecto;
+      localStorage.setItem("colaboradores", JSON.stringify(todos));
     }
 
-    // Redirigir luego de 2 segundos
+    //  Redirigir luego de 2 segundos
     setTimeout(() => {
       navigate(`/proyectos/${params.id}`);
     }, 2000);
