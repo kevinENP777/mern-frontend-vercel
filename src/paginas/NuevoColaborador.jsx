@@ -21,27 +21,30 @@ const NuevoColaborador = () => {
   }, []);
 
   const handleAgregar = () => {
-    //  Agrega el colaborador en el backend
-    agregarColaborador({ email: colaborador.email });
+  // Agrega el colaborador en el backend
+  agregarColaborador({ email: colaborador.email });
 
-    //  Mostrar alerta verde
-    mostrarAlerta({
-      msg: "Colaborador añadido correctamente",
-      error: false,
-    });
+  // Mostrar alerta
+  mostrarAlerta({
+    msg: "Colaborador añadido correctamente",
+    error: false,
+  });
 
-    //  Guardar en localStorage
-    const guardados = JSON.parse(localStorage.getItem("colaboradores")) || [];
-    if (!guardados.includes(colaborador.email)) {
-      guardados.push(colaborador.email);
-      localStorage.setItem("colaboradores", JSON.stringify(guardados));
-    }
+  // ✅ Guardar en localStorage por ID de proyecto
+  const todos = JSON.parse(localStorage.getItem("colaboradores")) || {};
+  const actuales = todos[params.id] || [];
 
-    // Redirigir luego de 2 segundos
-    setTimeout(() => {
-      navigate(`/proyectos/${params.id}`);
-    }, 2000);
-  };
+  if (!actuales.includes(colaborador.email)) {
+    actuales.push(colaborador.email);
+    todos[params.id] = actuales;
+    localStorage.setItem("colaboradores", JSON.stringify(todos));
+  }
+
+  // Redirigir luego de 2 segundos
+  setTimeout(() => {
+    navigate(`/proyectos/${params.id}`);
+  }, 2000);
+};
 
   return (
     <>
