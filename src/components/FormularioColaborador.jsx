@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import useProyectos from '../hooks/useProyectos';
+import useAuth from '../hooks/useAuth'; //  nuevo import
 import Alerta from './Alerta';
 
 const FormularioColaborador = () => {
   const [email, setEmail] = useState('');
   const { mostrarAlerta, alerta, submitColaborador } = useProyectos();
+  const { auth } = useAuth(); //  obtener el email del usuario logueado
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +27,18 @@ const FormularioColaborador = () => {
       return;
     }
 
+    // Validación para que no se agregue a sí mismo
+    if (email === auth.email) {
+      mostrarAlerta({
+        msg: 'No puedes añadir tu propio correo como colaborador',
+        error: true
+      });
+      return;
+    }
+// fin de la validación
+
+    // Llamada a la función para buscar al colaborador
+
     const resultado = await submitColaborador(email);
 
     if (!resultado || resultado.error) {
@@ -34,9 +48,6 @@ const FormularioColaborador = () => {
       });
       return;
     }
-
-    // ✅ Ya no hacemos nada más aquí
-    // La lógica sigue en el componente padre cuando se hace clic en "Agregar al Proyecto"
   };
 
   const { msg } = alerta;
@@ -67,7 +78,7 @@ const FormularioColaborador = () => {
       <input
         type="submit"
         className='bg-[#1C7B3E] hover:bg-[#155f30] w-full p-3 text-white uppercase text-sm font-bold cursor-pointer transition-colors rounded'
-        value='Buscar Patrocinador'
+        value='Buscar Colaborador'
       />
     </form>
   );
