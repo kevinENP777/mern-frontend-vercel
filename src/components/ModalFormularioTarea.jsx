@@ -123,11 +123,11 @@ const ModalFormularioTarea = () => {
                                     className='text-gray-700 uppercase font-bold text-sm'
                                     htmlFor='nombre'
                                 >
-                                    Emprendimiento
+                                    Tarea
                                 </label>
                                 <input 
                                     id='nombre'
-                                    placeholder='Descripción del emprendimiento'
+                                    placeholder='Descripción de la Tarea'
                                     className='border w-full p-2 mt-2 placeholder-gray-400 rounded-md'
                                     value={nombre}
                                     onChange={e => setNombre(e.target.value)}
@@ -138,11 +138,11 @@ const ModalFormularioTarea = () => {
                                     className='text-gray-700 uppercase font-bold text-sm'
                                     htmlFor='descripcion'
                                 >
-                                    Descripción Emprendimiento
+                                    Descripción Tarea
                                 </label>
                                 <input 
                                     id='descripcion'
-                                    placeholder='Descripción del emprendimiento'
+                                    placeholder='Descripción de la Tarea'
                                     className='border w-full p-2 mt-2 placeholder-gray-400 rounded-md'
                                     value={descripcion}
                                     onChange={e => setDescripcion(e.target.value)}
@@ -184,7 +184,7 @@ const ModalFormularioTarea = () => {
                           <input 
                                 type="submit" 
                                 className='bg-[#1C7B3E] hover:bg-[#1C7B3E] w-full p-3 text-white uppercase text-sm font-bold cursor-pointer transition-colors rounded'
-                                value={id ? 'Guardar Cambios' : 'Crear Emprendimiento'}
+                                value={id ? 'Guardar Cambios' : 'Crear Tarea'}
                             />
 
                         </form>
