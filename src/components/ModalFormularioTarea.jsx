@@ -123,11 +123,11 @@ const ModalFormularioTarea = () => {
                                     className='text-gray-700 uppercase font-bold text-sm'
                                     htmlFor='nombre'
                                 >
-                                    Tarea
+                                    Emprendimiento
                                 </label>
                                 <input 
                                     id='nombre'
-                                    placeholder='Descripción de la Tarea'
+                                    placeholder='Descripción del emprendimiento'
                                     className='border w-full p-2 mt-2 placeholder-gray-400 rounded-md'
                                     value={nombre}
                                     onChange={e => setNombre(e.target.value)}
@@ -138,11 +138,11 @@ const ModalFormularioTarea = () => {
                                     className='text-gray-700 uppercase font-bold text-sm'
                                     htmlFor='descripcion'
                                 >
-                                    Descripción Tarea
+                                    Descripción Emprendimiento
                                 </label>
                                 <input 
                                     id='descripcion'
-                                    placeholder='Descripción de la Tarea'
+                                    placeholder='Descripción del emprendimiento'
                                     className='border w-full p-2 mt-2 placeholder-gray-400 rounded-md'
                                     value={descripcion}
                                     onChange={e => setDescripcion(e.target.value)}
