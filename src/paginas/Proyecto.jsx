@@ -14,7 +14,7 @@ const Proyecto = () => {
     cargando,
     handleModalTarea,
     alerta,
-    mostrarAlerta // ✅ añadido
+    mostrarAlerta
   } = useProyectos();
 
   const [colaboradores, setColaboradores] = useState([]);
@@ -23,17 +23,23 @@ const Proyecto = () => {
     obtenerProyecto(params.id);
   }, [params.id]);
 
+  // ✅ Leer solo los colaboradores del proyecto actual
   useEffect(() => {
-    const guardados = JSON.parse(localStorage.getItem('colaboradores')) || [];
-    setColaboradores(guardados);
-  }, []);
+    const todos = JSON.parse(localStorage.getItem('colaboradores')) || {};
+    const delProyecto = todos[params.id] || [];
+    setColaboradores(delProyecto);
+  }, [params.id]);
 
-  // ✅ Función para eliminar colaborador
+  // ✅ Eliminar colaborador solo del proyecto actual
   const eliminarColaborador = (indice) => {
-    const nuevosColaboradores = [...colaboradores];
-    nuevosColaboradores.splice(indice, 1);
-    setColaboradores(nuevosColaboradores);
-    localStorage.setItem('colaboradores', JSON.stringify(nuevosColaboradores));
+    const todos = JSON.parse(localStorage.getItem('colaboradores')) || {};
+    const actuales = todos[params.id] || [];
+
+    actuales.splice(indice, 1);
+    todos[params.id] = actuales;
+
+    localStorage.setItem('colaboradores', JSON.stringify(todos));
+    setColaboradores(actuales);
 
     mostrarAlerta({
       msg: 'Colaborador eliminado correctamente',
