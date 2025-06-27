@@ -21,23 +21,22 @@ const NuevoColaborador = () => {
   }, []);
 
   const handleAgregar = () => {
-    //  Agrega el colaborador en el backend
     agregarColaborador({ email: colaborador.email });
 
-    //  Mostrar alerta verde
     mostrarAlerta({
       msg: "Colaborador añadido correctamente",
       error: false,
     });
 
-    //  Guardar en localStorage
-    const guardados = JSON.parse(localStorage.getItem("colaboradores")) || [];
+    // Guardar solo para este proyecto
+    const claveStorage = `colaboradores_${params.id}`;
+    const guardados = JSON.parse(localStorage.getItem(claveStorage)) || [];
+
     if (!guardados.includes(colaborador.email)) {
       guardados.push(colaborador.email);
-      localStorage.setItem("colaboradores", JSON.stringify(guardados));
+      localStorage.setItem(claveStorage, JSON.stringify(guardados));
     }
 
-    // Redirigir luego de 2 segundos
     setTimeout(() => {
       navigate(`/proyectos/${params.id}`);
     }, 2000);
