@@ -1,4 +1,4 @@
-const Alerta = ({ alerta }) => {
+const Alerta = ({ alerta, pruebas }) => {
   if (!alerta || !alerta.msg) return null;
 
   return (
